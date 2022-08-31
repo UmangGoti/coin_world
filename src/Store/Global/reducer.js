@@ -2,7 +2,6 @@ import * as types from './actionTypes';
 
 const initialState = {
   loading: false,
-  userDetail: {},
   isInternetConnected: true,
   errorMessage: '',
   isError: false,

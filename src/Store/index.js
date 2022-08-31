@@ -6,8 +6,8 @@ import {createLogger} from 'redux-logger';
 const configureStore = () => {
   const middleware = [thunk];
   if (process.env.NODE_ENV !== 'production') {
-    const logger = createLogger();
-    middleware.push(logger);
+    // const logger = createLogger();
+    // middleware.push(logger);
   }
   return createStore(reducer, applyMiddleware(...middleware));
 };
