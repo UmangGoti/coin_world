@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 
 import global from './Global';
-import getAsset from './GetAssets';
+import getAssets from './GetAssets';
+import getCoinInfo from './GetCoinInfo';
 
 export default combineReducers({
   global,
-  getAsset,
+  getAssets,
+  getCoinInfo
 });

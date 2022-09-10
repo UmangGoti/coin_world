@@ -6,7 +6,7 @@ import {
 } from '@react-navigation/stack';
 import React from 'react';
 import { connect } from 'react-redux';
-import { HomeScreen } from '../Screens';
+import { CoinInfoScreen, HomeScreen } from '../Screens';
 import { noInternetConnected } from '../Store/Global';
 import { navigationRef } from './NavigationUtils';
 
@@ -54,6 +54,11 @@ const Navigation = ({ noInternetConnected, props }) => {
         <Stack.Screen
           name="HomeScreen"
           component={HomeScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="CoinInfoScreen"
+          component={CoinInfoScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

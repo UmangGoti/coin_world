@@ -9,27 +9,25 @@ const defaultHeaders = {
   'X-RapidAPI-Host': '',
 };
 
-export const getAssets = (isLoadding, { SuccessCallback, FailureCallback }) => {
+export const getCoinInfo = (
+  isLoadding,
+  coinuuid,
+  { SuccessCallback, FailureCallback },
+) => {
   return dispatch => {
     isLoadding ? dispatch(apiLoadingStart()) : null;
+    var objEndpoint = Object.assign({}, endPoints.coin);
+    objEndpoint['endpoint'] = objEndpoint['endpoint'] + coinuuid;
     API.getInstance().Fetch(
-      endPoints.assets,
+      objEndpoint,
       defaultHeaders,
-      {
-        referenceCurrencyUuid: 'yhjMzLPhuIDl',
-        timePeriod: '24h',
-        'tiers[0]': '1',
-        orderBy: 'marketCap',
-        orderDirection: 'desc',
-        limit: '10',
-        offset: '0',
-      },
+      { referenceCurrencyUuid: 'yhjMzLPhuIDl', timePeriod: '24h' },
       {
         SuccessCallback: res => {
           dispatch(apiLoadingStop());
           SuccessCallback(res);
           dispatch({
-            type: types.GET_ASSETS,
+            type: types.GET_COININFO,
             payload: res.data,
           });
         },

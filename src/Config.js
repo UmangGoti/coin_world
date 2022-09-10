@@ -2,15 +2,20 @@ import { Method } from './ApiService';
 export const appName = 'CoinWorld';
 
 export const apiConfig = {
-  productionBaseURL: 'https://api.coincap.io/v2' /*release build*/,
-  testingBaseURL: 'https://api.coincap.io/v2' /*inteneal testing*/,
-  developmentBaseURL: 'https://api.coincap.io/v2' /*for client test*/,
-  alphaBaseURL: 'https://api.coincap.io/v2',
+  productionBaseURL: 'https://coinranking1.p.rapidapi.com/' /*release build*/,
+  testingBaseURL: 'https://coinranking1.p.rapidapi.com/' /*inteneal testing*/,
+  developmentBaseURL:
+    'https://coinranking1.p.rapidapi.com/' /*for client test*/,
+  alphaBaseURL: 'https://coinranking1.p.rapidapi.com/',
 };
 
 export const endPoints = {
   assets: {
-    endpoint: '/assets',
+    endpoint: '/coins',
+    method: Method.GET,
+  },
+  coin: {
+    endpoint: '/coin/',
     method: Method.GET,
   },
 };

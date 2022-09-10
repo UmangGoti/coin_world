@@ -70,6 +70,9 @@ export const color = {
   lightGrey: '#CDCFD4',
   blueGreyDarkLight: '#F3F4F5',
   blueGreyDark: '#3C4252',
+  chartGreen: 'rgba(75, 209, 102, 0.2)',
+  optimismRed06: 'rgba(255, 82, 82, 0.2)',
+  paleBlue: '#579DFF'
 };
 
 export const Fonts = {
@@ -81,3 +84,24 @@ export const Fonts = {
   SFMONO_Medium: 'SFMono-Medium',
   SFMONO_Regular: 'SFMono-Regular',
 };
+
+export function hexToRGB(h, a = 0.2) {
+  var r = 0;
+  var g = 0;
+  var b = 0;
+
+  // 3 digits
+  if (h.length == 4) {
+    r = '0x' + h[1] + h[1];
+    g = '0x' + h[2] + h[2];
+    b = '0x' + h[3] + h[3];
+
+    // 6 digits
+  } else if (h.length == 7) {
+    r = '0x' + h[1] + h[2];
+    g = '0x' + h[3] + h[4];
+    b = '0x' + h[5] + h[6];
+  }
+
+  return 'rgba(' + +r + ',' + +g + ',' + +b + ',' + a + ')';
+}
