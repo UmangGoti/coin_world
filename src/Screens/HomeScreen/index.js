@@ -16,6 +16,7 @@ import {
   ic_coin,
   ic_crypto_market,
   ic_drop,
+  ic_rounded_arrow_right,
   ic_stats,
 } from '../../Assets';
 import { MainHeader } from '../../Components';
@@ -23,8 +24,6 @@ import {
   capitalizeFirstLetter,
   changeImageUrlExtension,
   commarize,
-  openLink,
-  positiveNagative,
 } from '../../Helper/Utils';
 import { navigate } from '../../Navigators/NavigationUtils';
 import { getAssets } from '../../Store/GetAssets';
@@ -51,7 +50,7 @@ const HomeScreen = ({ getAssets }) => {
 
   //-- API Call
   const apiToGetAssets = () => {
-    getAssets(true, {
+    getAssets(!refreshing, {
       SuccessCallback: res => {
         setAssets(res?.data?.coins);
         setData(res?.data);
@@ -66,52 +65,59 @@ const HomeScreen = ({ getAssets }) => {
 
   useEffect(() => {
     apiToGetAssets();
-    console.log();
   }, []);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: color.MAIN_DARK }}>
       <MainHeader title="Coin World" />
+      {(data?.stats?.totalMarketCap !== 0 ||
+        data?.stats?.total24hVolume !== 0 ||
+        data?.stats?.totalCoins !== 0 ||
+        data?.stats?.totalExchanges !== 0 ||
+        data?.stats?.totalMarkets !== 0) && (
+        <View
+          style={{
+            paddingHorizontal: sizes.CONTAINER_PADDING,
+            paddingVertical: sizes.CONTAINER_PADDING,
+          }}>
+          <ScrollView
+            showsHorizontalScrollIndicator={false}
+            horizontal={true}
+            style={{}}>
+            <HeaderCard
+              imageSource={ic_stats}
+              value={`$ ${commarize(data?.stats?.totalMarketCap)}`}
+              title={'Crypto market cap'}
+            />
+            <HeaderCard
+              imageSource={ic_drop}
+              value={`$ ${commarize(data?.stats?.total24hVolume)}`}
+              title={'24h volume'}
+            />
+            <HeaderCard
+              imageSource={ic_coin}
+              value={data?.stats?.totalCoins}
+              title={'All coins'}
+            />
+            <HeaderCard
+              imageSource={ic_building}
+              value={data?.stats?.totalExchanges}
+              title={'All crypto exchanges'}
+            />
+            <HeaderCard
+              imageSource={ic_crypto_market}
+              value={data?.stats?.totalMarkets}
+              title={'All crypto markets'}
+            />
+          </ScrollView>
+        </View>
+      )}
       <View
         style={{
-          paddingHorizontal: sizes.CONTAINER_PADDING,
-          paddingVertical: sizes.CONTAINER_PADDING,
-        }}>
-        <ScrollView
-          showsHorizontalScrollIndicator={false}
-          horizontal={true}
-          style={{}}>
-          <HeaderCard
-            imageSource={ic_stats}
-            value={`$ ${commarize(data?.stats?.totalMarketCap)}`}
-            title={'Crypto market cap'}
-          />
-          <HeaderCard
-            imageSource={ic_drop}
-            value={`$ ${commarize(data?.stats?.total24hVolume)}`}
-            title={'24h volume'}
-          />
-          <HeaderCard
-            imageSource={ic_coin}
-            value={data?.stats?.totalCoins}
-            title={'All coins'}
-          />
-          <HeaderCard
-            imageSource={ic_building}
-            value={data?.stats?.totalExchanges}
-            title={'All crypto exchanges'}
-          />
-          <HeaderCard
-            imageSource={ic_crypto_market}
-            value={data?.stats?.totalMarkets}
-            title={'All crypto markets'}
-          />
-        </ScrollView>
-      </View>
-      <View
-        style={{
-          borderTopLeftRadius: normalize(24),
-          borderTopRightRadius: normalize(24),
+          borderTopLeftRadius:
+            data?.stats?.totalCoins !== 0 ? normalize(24) : 0,
+          borderTopRightRadius:
+            data?.stats?.totalCoins !== 0 ? normalize(24) : 0,
           backgroundColor: color.dark,
           flex: 1,
         }}>
@@ -142,11 +148,6 @@ const AssetCard = ({ item, key }) => {
   const [isImageUnknown, setImageIsUnknown] = useState(false);
   return (
     <Pressable
-      onPress={() => {
-        navigate('CoinInfoScreen', {
-          coinuuid: item.uuid,
-        });
-      }}
       key={key}
       style={{
         backgroundColor: color.WHITE,
@@ -159,67 +160,12 @@ const AssetCard = ({ item, key }) => {
           flexDirection: 'row',
           justifyContent: 'space-between',
         }}>
-        {/**Header*/}
-        <View>
-          <Text
-            style={{
-              width: normalize(200),
-              fontSize: sizes.title,
-              fontFamily: Fonts.SFPRO_ROUNDED_Bold,
-              color: item.color !== null ? item.color : color.MAIN_DARK,
-              lineHeight: normalize(20),
-              letterSpacing: 1,
-            }}
-            numberOfLines={1}>
-            {capitalizeFirstLetter(item.name)}
-          </Text>
-          <Text
-            style={{
-              fontSize: sizes.body2,
-              fontFamily: Fonts.SFPRO_ROUNDED_Semibold,
-              color:
-                item.color !== null
-                  ? hexToRGB(`${item.color}`, 0.4)
-                  : color.MAIN_DARK,
-              lineHeight: normalize(16),
-              letterSpacing: 0.5,
-            }}>
-            {capitalizeFirstLetter(item.symbol)}
-          </Text>
-        </View>
-        {/**ChangePercent24Hr */}
-        <Text
-          style={{
-            width: normalize(80),
-            height: normalize(30),
-            borderRadius: normalize(24),
-            backgroundColor: positiveNagative(item.change)
-              ? color.chartGreen
-              : color.optimismRed06,
-            fontSize: sizes.body2,
-            fontFamily: Fonts.SFPRO_ROUNDED_Heavy,
-            color: positiveNagative(item.change)
-              ? color.green
-              : color.brightRed,
-            letterSpacing: 0.5,
-            textAlign: 'center',
-            textAlignVertical: 'center',
-          }}>
-          {positiveNagative(item.change)
-            ? `+${Number(item.change).toFixed(2)}%`
-            : `${Number(item.change).toFixed(2)}%`}
-        </Text>
-      </View>
-      <View style={{ height: normalize(10) }} />
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-        }}>
         {/**Coin Image */}
         <Pressable
           onPress={() => {
-            openLink(item?.coinrankingUrl);
+            navigate('CoinInfoScreen', {
+              coinuuid: item.uuid,
+            });
           }}
           style={{
             width: normalize(45),
@@ -234,7 +180,9 @@ const AssetCard = ({ item, key }) => {
             <Image
               onError={event => {
                 setImageIsUnknown(
-                  event.nativeEvent.error === 'unknown image format',
+                  event.nativeEvent.error === 'unknown image format' ||
+                    event.nativeEvent.error ===
+                      `Unexpected HTTP code Response{protocol=h2, code=500, message=, url=${item?.iconUrl}}`,
                 );
                 console.log(event.nativeEvent.error);
               }}
@@ -252,30 +200,84 @@ const AssetCard = ({ item, key }) => {
             <SvgUri
               width={`${normalize(30)}`}
               height={`${normalize(30)}`}
-              uri={item?.iconUrl}
+              uri={changeImageUrlExtension(item.iconUrl, '.svg')}
             />
           )}
         </Pressable>
-        <View style={{ alignSelf: 'flex-end' }}>
-          <Text
+        <Pressable
+          style={{
+            width: normalize(40),
+            height: normalize(40),
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+          onPress={() => {
+            navigate('CoinInfoScreen', {
+              coinuuid: item.uuid,
+            });
+          }}>
+          <Image
+            source={ic_rounded_arrow_right}
             style={{
-              fontSize: sizes.body2,
-              fontFamily: Fonts.SFPRO_ROUNDED_Semibold,
-              color: color.placeholder,
-              alignSelf: 'flex-end',
-              lineHeight: normalize(16),
-              letterSpacing: 0.5,
-            }}>
-            USD
-          </Text>
+              width: normalize(20),
+              height: normalize(20),
+              tintColor: item.color !== null ? item.color : color.paleBlue,
+            }}
+            resizeMode={'contain'}
+          />
+        </Pressable>
+      </View>
+      <View style={{ height: normalize(10) }} />
+
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+        }}>
+        {/**Header*/}
+        <View
+          style={{
+            flex: 1,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}>
+          <View>
+            <Text
+              style={{
+                width: normalize(200),
+                fontSize: sizes.title,
+                fontFamily: Fonts.SFPRO_ROUNDED_Bold,
+                color: item.color !== null ? item.color : color.MAIN_DARK,
+                lineHeight: normalize(20),
+                letterSpacing: 1,
+              }}
+              numberOfLines={1}>
+              {capitalizeFirstLetter(item.name)}
+            </Text>
+            <Text
+              style={{
+                fontSize: sizes.body2,
+                fontFamily: Fonts.SFPRO_ROUNDED_Semibold,
+                color:
+                  item.color !== null
+                    ? hexToRGB(`${item.color}`, 0.4)
+                    : color.MAIN_DARK,
+                lineHeight: normalize(16),
+                letterSpacing: 0.5,
+              }}>
+              {capitalizeFirstLetter(item.symbol)}
+            </Text>
+          </View>
           {/**Price */}
           <Text
             style={{
               fontSize: sizes.body,
               fontFamily: Fonts.SFPRO_ROUNDED_Semibold,
-              color: color.MAIN_DARK,
+              color: item.color !== null ? item.color : color.MAIN_DARK,
               lineHeight: normalize(16),
               letterSpacing: 0.5,
+              alignSelf: 'flex-end',
+              textAlign: 'right',
             }}>
             {`$${Number(item.price).toFixed(2)}`}
           </Text>
@@ -289,7 +291,7 @@ const HeaderCard = ({
   imageSource,
   title,
   value,
-  tintColor = color.paleBlue,
+  tintColor = color.WHITE,
   imageBackgroundColor = hexToRGB(color.paleBlue, 0.5),
   cardPadding = normalize(15),
   cardRadius = normalize(24),

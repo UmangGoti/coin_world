@@ -72,7 +72,7 @@ export const color = {
   blueGreyDark: '#3C4252',
   chartGreen: 'rgba(75, 209, 102, 0.2)',
   optimismRed06: 'rgba(255, 82, 82, 0.2)',
-  paleBlue: '#579DFF'
+  paleBlue: '#579DFF',
 };
 
 export const Fonts = {

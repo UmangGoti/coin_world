@@ -1,12 +1,12 @@
 import moment from 'moment';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
+  FlatList,
   Image,
   Pressable,
   RefreshControl,
   SafeAreaView,
   ScrollView,
-  StatusBar,
   Text,
   useWindowDimensions,
   View,
@@ -14,10 +14,30 @@ import {
 import RenderHtml from 'react-native-render-html';
 import { SvgUri } from 'react-native-svg';
 import { connect } from 'react-redux';
-import { ic_left_arrow, ic_verified } from '../../Assets';
+import {
+  bitcointalk,
+  discord,
+  explorer,
+  facebook,
+  github,
+  ic_left_arrow,
+  ic_verified,
+  instagram,
+  linkedin,
+  medium,
+  reddit,
+  sinaweibo,
+  telegram,
+  twitter,
+  vkontakte,
+  website,
+  whitepaper,
+  youtube,
+} from '../../Assets';
 import { MainHeader, TagValue } from '../../Components';
 import {
   capitalizeFirstLetter,
+  changeImageUrlExtension,
   openLink,
   positiveNagative,
 } from '../../Helper/Utils';
@@ -63,7 +83,7 @@ const CoinInfoScreen = ({ route, navigation, props, getCoinInfo }) => {
   });
   const [isImageUnknown, setImageIsUnknown] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
-  const onRefresh = React.useCallback(() => {
+  const onRefresh = useCallback(() => {
     setRefreshing(true);
     apiToGetCoinInfo();
   }, []);
@@ -75,7 +95,9 @@ const CoinInfoScreen = ({ route, navigation, props, getCoinInfo }) => {
         setCoinInfo(res?.data?.coin);
         setRefreshing(false);
       },
-      FailureCallback: res => {},
+      FailureCallback: res => {
+        setRefreshing(false);
+      },
     });
   };
   //--End
@@ -90,6 +112,7 @@ const CoinInfoScreen = ({ route, navigation, props, getCoinInfo }) => {
   ) {
     setCoinInfo({ ...coinInfo, color: color.WHITE });
   }
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: color.MAIN_DARK }}>
       <MainHeader
@@ -118,20 +141,13 @@ const CoinInfoScreen = ({ route, navigation, props, getCoinInfo }) => {
                   justifyContent: 'center',
                   alignItems: 'center',
                 }}>
-                {isImageUnknown ? (
-                  <SvgUri
-                    onError={event => {
-                      console.log(event.nativeEvent.error);
-                    }}
-                    width={`${normalize(35)}`}
-                    height={`${normalize(35)}`}
-                    uri={coinInfo?.iconUrl}
-                  />
-                ) : (
+                {!isImageUnknown && (
                   <Image
                     onError={event => {
                       setImageIsUnknown(
-                        event.nativeEvent.error === 'unknown image format',
+                        event.nativeEvent.error === 'unknown image format' ||
+                          event.nativeEvent.error ===
+                            `Unexpected HTTP code Response{protocol=h2, code=500, message=, url=${coinInfo?.iconUrl}}`,
                       );
                       console.log(event.nativeEvent.error);
                     }}
@@ -141,8 +157,15 @@ const CoinInfoScreen = ({ route, navigation, props, getCoinInfo }) => {
                       height: normalize(35),
                     }}
                     source={{
-                      uri: coinInfo?.iconUrl,
+                      uri: changeImageUrlExtension(coinInfo?.iconUrl),
                     }}
+                  />
+                )}
+                {isImageUnknown && (
+                  <SvgUri
+                    width={`${normalize(30)}`}
+                    height={`${normalize(30)}`}
+                    uri={changeImageUrlExtension(coinInfo?.iconUrl, '.svg')}
                   />
                 )}
               </Pressable>
@@ -393,13 +416,30 @@ const CoinInfoScreen = ({ route, navigation, props, getCoinInfo }) => {
             />
           )}
           <View height={normalize(30)} />
+          <FlatList
+            data={coinInfo?.links}
+            keyExtractor={(item, index) => `${index}`}
+            contentContainerStyle={{ justifyContent: 'space-between' }}
+            numColumns={2}
+            renderItem={({ item, index }) => {
+              return (
+                <LinkItem
+                  item={item}
+                  index={index}
+                  majorColor={coinInfo?.color}
+                  onPress={() => {
+                    openLink(item?.url);
+                  }}
+                />
+              );
+            }}
+          />
+          <View height={normalize(30)} />
         </ScrollView>
       </View>
     </SafeAreaView>
   );
 };
-
-
 
 function Heading({
   title,
@@ -458,6 +498,93 @@ function WebDisplay({
     />
   );
 }
+
+const LinkItem = ({ item, index, majorColor, onPress }) => {
+  return (
+    item?.type !== 'wechat' && (
+      <Pressable
+        onPress={onPress}
+        style={{
+          flex: 1,
+          backgroundColor: color.WHITE,
+          borderRadius: normalize(12),
+          padding: normalize(5),
+          margin: normalize(5),
+        }}>
+        <View style={{}}>
+          <Image
+            resizeMode="contain"
+            style={{
+              width: normalize(30),
+              height: normalize(30),
+              tintColor:
+                majorColor === color.WHITE ? color.MAIN_DARK : majorColor,
+            }}
+            source={getIcon(item.type)}
+          />
+        </View>
+        <Text
+          style={{
+            fontFamily: Fonts.SFPRO_ROUNDED_Bold,
+            color: majorColor === color.WHITE ? color.MAIN_DARK : majorColor,
+          }}>
+          {item?.name}
+        </Text>
+      </Pressable>
+    )
+  );
+};
+
+const getIcon = type => {
+  if (type === 'bitcointalk') {
+    return bitcointalk;
+  }
+  if (type === 'explorer') {
+    return explorer;
+  }
+  if (type === 'github') {
+    return github;
+  }
+  if (type === 'telegram') {
+    return telegram;
+  }
+  if (type === 'reddit') {
+    return reddit;
+  }
+  if (type === 'whitepaper') {
+    return whitepaper;
+  }
+  if (type === 'website') {
+    return website;
+  }
+  if (type === 'medium') {
+    return medium;
+  }
+  if (type === 'twitter') {
+    return twitter;
+  }
+  if (type === 'facebook') {
+    return facebook;
+  }
+  if (type === 'instagram') {
+    return instagram;
+  }
+  if (type === 'youtube') {
+    return youtube;
+  }
+  if (type === 'linkedin') {
+    return linkedin;
+  }
+  if (type === 'discord') {
+    return discord;
+  }
+  if (type === 'sina-weibo') {
+    return sinaweibo;
+  }
+  if (type === 'vkontakte') {
+    return vkontakte;
+  }
+};
 
 const mapStateToProps = state => ({
   coinsData: state.getCoinInfo.coinsData,
