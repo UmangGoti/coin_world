@@ -136,7 +136,11 @@ const HomeScreen = ({ getAssets }) => {
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
           refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            <RefreshControl
+              progressBackgroundColor={color.WHITE}
+              refreshing={refreshing}
+              onRefresh={onRefresh}
+            />
           }
         />
       </View>
@@ -148,6 +152,11 @@ const AssetCard = ({ item, key }) => {
   const [isImageUnknown, setImageIsUnknown] = useState(false);
   return (
     <Pressable
+      onPress={() => {
+        navigate('CoinInfoScreen', {
+          coinuuid: item.uuid,
+        });
+      }}
       key={key}
       style={{
         backgroundColor: color.WHITE,

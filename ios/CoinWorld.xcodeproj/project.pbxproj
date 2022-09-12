@@ -12,15 +12,15 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		18F994ABCAFF4295B62754D8 /* SF-Pro-Rounded-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B49A3C56AFEB425880D8DF02 /* SF-Pro-Rounded-Semibold.otf */; };
+		561E48A12200426DB5CD7E3A /* SF-Pro-Rounded-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 171B2803ADCE483996E3FB25 /* SF-Pro-Rounded-Heavy.otf */; };
+		6F433970EEF2464B873306BC /* SFMono-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = FCB549FF3D5B4BBAB31DCD46 /* SFMono-Medium.otf */; };
 		7699B88040F8A987B510C191 /* libPods-CoinWorld-CoinWorldTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-CoinWorld-CoinWorldTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		860D5B95E08944DF87481232 /* SF-Pro-Rounded-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8135556F34CE43A9ACD7793A /* SF-Pro-Rounded-Bold.otf */; };
-		561E48A12200426DB5CD7E3A /* SF-Pro-Rounded-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 171B2803ADCE483996E3FB25 /* SF-Pro-Rounded-Heavy.otf */; };
-		E23F3ED9C54D428B82D6321C /* SF-Pro-Rounded-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 862C91449B1B4C6C96721F82 /* SF-Pro-Rounded-Medium.otf */; };
-		BEFAF9998A4041708CE7DFE7 /* SF-Pro-Rounded-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5175EDAB58DB48A0A4BE17C1 /* SF-Pro-Rounded-Regular.otf */; };
-		18F994ABCAFF4295B62754D8 /* SF-Pro-Rounded-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B49A3C56AFEB425880D8DF02 /* SF-Pro-Rounded-Semibold.otf */; };
-		6F433970EEF2464B873306BC /* SFMono-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = FCB549FF3D5B4BBAB31DCD46 /* SFMono-Medium.otf */; };
 		AD872D1B1E47466A8E28612B /* SFMono-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 26FD2365035B439D96E7EEC1 /* SFMono-Regular.otf */; };
+		BEFAF9998A4041708CE7DFE7 /* SF-Pro-Rounded-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5175EDAB58DB48A0A4BE17C1 /* SF-Pro-Rounded-Regular.otf */; };
+		E23F3ED9C54D428B82D6321C /* SF-Pro-Rounded-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 862C91449B1B4C6C96721F82 /* SF-Pro-Rounded-Medium.otf */; };
+		712D1CAB2B2B4F2AAAEBB105 /* SF-Pro-Rounded-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 41AD00E063A24DBCB623CA4D /* SF-Pro-Rounded-Bold.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,21 +43,21 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = CoinWorld/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = CoinWorld/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = CoinWorld/main.m; sourceTree = "<group>"; };
+		171B2803ADCE483996E3FB25 /* SF-Pro-Rounded-Heavy.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SF-Pro-Rounded-Heavy.otf"; path = "../src/Assets/Fonts/SF-Pro-Rounded-Heavy.otf"; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-CoinWorld-CoinWorldTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CoinWorld-CoinWorldTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		26FD2365035B439D96E7EEC1 /* SFMono-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SFMono-Regular.otf"; path = "../src/Assets/Fonts/SFMono-Regular.otf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-CoinWorld.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinWorld.debug.xcconfig"; path = "Target Support Files/Pods-CoinWorld/Pods-CoinWorld.debug.xcconfig"; sourceTree = "<group>"; };
+		5175EDAB58DB48A0A4BE17C1 /* SF-Pro-Rounded-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SF-Pro-Rounded-Regular.otf"; path = "../src/Assets/Fonts/SF-Pro-Rounded-Regular.otf"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-CoinWorld.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinWorld.release.xcconfig"; path = "Target Support Files/Pods-CoinWorld/Pods-CoinWorld.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-CoinWorld-CoinWorldTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinWorld-CoinWorldTests.debug.xcconfig"; path = "Target Support Files/Pods-CoinWorld-CoinWorldTests/Pods-CoinWorld-CoinWorldTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-CoinWorld.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CoinWorld.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = CoinWorld/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		862C91449B1B4C6C96721F82 /* SF-Pro-Rounded-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SF-Pro-Rounded-Medium.otf"; path = "../src/Assets/Fonts/SF-Pro-Rounded-Medium.otf"; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-CoinWorld-CoinWorldTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinWorld-CoinWorldTests.release.xcconfig"; path = "Target Support Files/Pods-CoinWorld-CoinWorldTests/Pods-CoinWorld-CoinWorldTests.release.xcconfig"; sourceTree = "<group>"; };
+		B49A3C56AFEB425880D8DF02 /* SF-Pro-Rounded-Semibold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SF-Pro-Rounded-Semibold.otf"; path = "../src/Assets/Fonts/SF-Pro-Rounded-Semibold.otf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		8135556F34CE43A9ACD7793A /* SF-Pro-Rounded-Bold.otf */ = {isa = PBXFileReference; name = "SF-Pro-Rounded-Bold.otf"; path = "../src/Assets/Fonts/SF-Pro-Rounded-Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		171B2803ADCE483996E3FB25 /* SF-Pro-Rounded-Heavy.otf */ = {isa = PBXFileReference; name = "SF-Pro-Rounded-Heavy.otf"; path = "../src/Assets/Fonts/SF-Pro-Rounded-Heavy.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		862C91449B1B4C6C96721F82 /* SF-Pro-Rounded-Medium.otf */ = {isa = PBXFileReference; name = "SF-Pro-Rounded-Medium.otf"; path = "../src/Assets/Fonts/SF-Pro-Rounded-Medium.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		5175EDAB58DB48A0A4BE17C1 /* SF-Pro-Rounded-Regular.otf */ = {isa = PBXFileReference; name = "SF-Pro-Rounded-Regular.otf"; path = "../src/Assets/Fonts/SF-Pro-Rounded-Regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		B49A3C56AFEB425880D8DF02 /* SF-Pro-Rounded-Semibold.otf */ = {isa = PBXFileReference; name = "SF-Pro-Rounded-Semibold.otf"; path = "../src/Assets/Fonts/SF-Pro-Rounded-Semibold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		FCB549FF3D5B4BBAB31DCD46 /* SFMono-Medium.otf */ = {isa = PBXFileReference; name = "SFMono-Medium.otf"; path = "../src/Assets/Fonts/SFMono-Medium.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		26FD2365035B439D96E7EEC1 /* SFMono-Regular.otf */ = {isa = PBXFileReference; name = "SFMono-Regular.otf"; path = "../src/Assets/Fonts/SFMono-Regular.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FCB549FF3D5B4BBAB31DCD46 /* SFMono-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SFMono-Medium.otf"; path = "../src/Assets/Fonts/SFMono-Medium.otf"; sourceTree = "<group>"; };
+		41AD00E063A24DBCB623CA4D /* SF-Pro-Rounded-Bold.otf */ = {isa = PBXFileReference; name = "SF-Pro-Rounded-Bold.otf"; path = "../src/Assets/Fonts/SF-Pro-Rounded-Bold.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +152,21 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		B8404B7E182D4D71A0BBD0F3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				171B2803ADCE483996E3FB25 /* SF-Pro-Rounded-Heavy.otf */,
+				862C91449B1B4C6C96721F82 /* SF-Pro-Rounded-Medium.otf */,
+				5175EDAB58DB48A0A4BE17C1 /* SF-Pro-Rounded-Regular.otf */,
+				B49A3C56AFEB425880D8DF02 /* SF-Pro-Rounded-Semibold.otf */,
+				FCB549FF3D5B4BBAB31DCD46 /* SFMono-Medium.otf */,
+				26FD2365035B439D96E7EEC1 /* SFMono-Regular.otf */,
+				41AD00E063A24DBCB623CA4D /* SF-Pro-Rounded-Bold.otf */,
+			);
+			name = Resources;
+			path = "";
+			sourceTree = "<group>";
+		};
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,21 +177,6 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
-		};
-		B8404B7E182D4D71A0BBD0F3 /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-				8135556F34CE43A9ACD7793A /* SF-Pro-Rounded-Bold.otf */,
-				171B2803ADCE483996E3FB25 /* SF-Pro-Rounded-Heavy.otf */,
-				862C91449B1B4C6C96721F82 /* SF-Pro-Rounded-Medium.otf */,
-				5175EDAB58DB48A0A4BE17C1 /* SF-Pro-Rounded-Regular.otf */,
-				B49A3C56AFEB425880D8DF02 /* SF-Pro-Rounded-Semibold.otf */,
-				FCB549FF3D5B4BBAB31DCD46 /* SFMono-Medium.otf */,
-				26FD2365035B439D96E7EEC1 /* SFMono-Regular.otf */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 
@@ -274,13 +274,13 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				860D5B95E08944DF87481232 /* SF-Pro-Rounded-Bold.otf in Resources */,
 				561E48A12200426DB5CD7E3A /* SF-Pro-Rounded-Heavy.otf in Resources */,
 				E23F3ED9C54D428B82D6321C /* SF-Pro-Rounded-Medium.otf in Resources */,
 				BEFAF9998A4041708CE7DFE7 /* SF-Pro-Rounded-Regular.otf in Resources */,
 				18F994ABCAFF4295B62754D8 /* SF-Pro-Rounded-Semibold.otf in Resources */,
 				6F433970EEF2464B873306BC /* SFMono-Medium.otf in Resources */,
 				AD872D1B1E47466A8E28612B /* SFMono-Regular.otf in Resources */,
+				712D1CAB2B2B4F2AAAEBB105 /* SF-Pro-Rounded-Bold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -633,6 +633,7 @@
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
 				);
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -696,6 +697,7 @@
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
 				);
+				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

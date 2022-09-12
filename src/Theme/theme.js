@@ -76,13 +76,20 @@ export const color = {
 };
 
 export const Fonts = {
-  SFPRO_ROUNDED_Bold: 'SF-Pro-Rounded-Bold',
-  SFPRO_ROUNDED_Heavy: 'SF-Pro-Rounded-Heavy',
-  SFPRO_ROUNDED_Medium: 'SF-Pro-Rounded-Medium',
-  SFPRO_ROUNDED_Regular: 'SF-Pro-Rounded-Regular',
-  SFPRO_ROUNDED_Semibold: 'SF-Pro-Rounded-Semibold',
-  SFMONO_Medium: 'SFMono-Medium',
-  SFMONO_Regular: 'SFMono-Regular',
+  SFPRO_ROUNDED_Bold:
+    Platform.OS === 'ios' ? 'SF Pro Rounded Bold' : 'SF-Pro-Rounded-Bold',
+  SFPRO_ROUNDED_Heavy:
+    Platform.OS === 'ios' ? 'SF Pro Rounded Heavy' : 'SF-Pro-Rounded-Heavy',
+  SFPRO_ROUNDED_Medium:
+    Platform.OS === 'ios' ? 'SF Pro Rounded Medium' : 'SF-Pro-Rounded-Medium',
+  SFPRO_ROUNDED_Regular:
+    Platform.OS === 'ios' ? 'SF Pro Rounded Regular' : 'SF-Pro-Rounded-Regular',
+  SFPRO_ROUNDED_Semibold:
+    Platform.OS === 'ios'
+      ? 'SF Pro Rounded Semibold'
+      : 'SF-Pro-Rounded-Semibold',
+  SFMONO_Medium: Platform.OS === 'ios' ? 'SFMono-Medium' : 'SFMono-Medium',
+  SFMONO_Regular: Platform.OS === 'ios' ? 'SFMono-Regular' : 'SFMono-Regular',
 };
 
 export function hexToRGB(h, a = 0.2) {

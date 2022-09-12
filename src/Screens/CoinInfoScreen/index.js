@@ -199,7 +199,7 @@ const CoinInfoScreen = ({ route, navigation, props, getCoinInfo }) => {
                 <Text
                   style={{
                     color: color.WHITE,
-                  }}>{`  #${coinInfo?.rank} `}</Text>
+                  }}>{` #${coinInfo?.rank} `}</Text>
               )}
             </Text>
           </View>
@@ -229,7 +229,7 @@ const CoinInfoScreen = ({ route, navigation, props, getCoinInfo }) => {
             )}
             <View height={normalize(10)} />
             {coinInfo?.change && (
-              <Text
+              <Pressable
                 style={{
                   width: normalize(80),
                   height: normalize(30),
@@ -239,18 +239,22 @@ const CoinInfoScreen = ({ route, navigation, props, getCoinInfo }) => {
                     : color.optimismRed06,
                   fontSize: sizes.body2,
                   fontFamily: Fonts.SFPRO_ROUNDED_Heavy,
-                  color: positiveNagative(coinInfo?.change)
-                    ? color.green
-                    : color.brightRed,
-                  textAlign: 'center',
-                  textAlignVertical: 'center',
-                  lineHeight: normalize(16),
-                  letterSpacing: 0.5,
+                  justifyContent:'center'
                 }}>
-                {positiveNagative(coinInfo?.change)
-                  ? `+${Number(coinInfo?.change).toFixed(2)}%`
-                  : `${Number(coinInfo?.change).toFixed(2)}%`}
-              </Text>
+                <Text
+                  style={{
+                    textAlign: 'center',
+                    lineHeight: normalize(16),
+                    letterSpacing: 0.5,
+                    color: positiveNagative(coinInfo?.change)
+                      ? color.green
+                      : color.brightRed,
+                  }}>
+                  {positiveNagative(coinInfo?.change)
+                    ? `+${Number(coinInfo?.change).toFixed(2)}%`
+                    : `${Number(coinInfo?.change).toFixed(2)}%`}
+                </Text>
+              </Pressable>
             )}
           </View>
         </View>
