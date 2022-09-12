@@ -5,8 +5,8 @@ import { apiLoadingStart, apiLoadingStop } from '../Global/actions';
 
 const defaultHeaders = {
   'Content-Type': 'application/json',
-  'X-RapidAPI-Key': '6eec716e91mshce9a4f591160581p11770fjsnaad0b1ba12bf',
-  'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com',
+  'X-RapidAPI-Key': '',
+  'X-RapidAPI-Host': '',
 };
 
 export const getAssets = (isLoadding, { SuccessCallback, FailureCallback }) => {
