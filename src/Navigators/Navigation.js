@@ -6,7 +6,14 @@ import {
 } from '@react-navigation/stack';
 import React from 'react';
 import { connect } from 'react-redux';
-import { CoinInfoScreen, HomeScreen } from '../Screens';
+import {
+  CoinInfoScreen,
+  CreateWalletScreen,
+  HomeScreen,
+  LoginScreen,
+  SplashScreen,
+  WalletImportScreen,
+} from '../Screens';
 import { noInternetConnected } from '../Store/Global';
 import { navigationRef } from './NavigationUtils';
 
@@ -46,11 +53,31 @@ const Navigation = ({ noInternetConnected, props }) => {
   return (
     <NavigationContainer ref={navigationRef}>
       <Stack.Navigator
-        initialRouteName={'HomeScreen'}
+        initialRouteName={'SplashScreen'}
         screenOptions={{
           headerShown: false,
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         }}>
+        <Stack.Screen
+          name="SplashScreen"
+          component={SplashScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="CreateWalletScreen"
+          component={CreateWalletScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="WalletImportScreen"
+          component={WalletImportScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="LoginScreen"
+          component={LoginScreen}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen
           name="HomeScreen"
           component={HomeScreen}

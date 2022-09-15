@@ -2,6 +2,19 @@ import { Alert, Linking } from 'react-native';
 import InAppBrowser from 'react-native-inappbrowser-reborn';
 import { color } from '../Theme/theme';
 
+export const isNullOrUndefined = value => {
+  return value == null || value == '';
+};
+
+//Password Validation
+export const strongRegex = new RegExp(
+  '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})',
+);
+
+export function checkEmpty(value) {
+  return value.split(/\s/).join('') === '' ? true : false;
+}
+
 export function helperLog(tag, type) {
   console.log(tag, JSON.stringify(type));
 }
