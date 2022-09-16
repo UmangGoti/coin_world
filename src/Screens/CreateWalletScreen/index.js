@@ -5,8 +5,11 @@ import { connect } from 'react-redux';
 import { MainHeader } from '../../Components';
 import InputText from '../../Components/InputText';
 import { isNullOrUndefined } from '../../Helper/Utils';
-import { navigateAndSimpleReset } from '../../Navigators/NavigationUtils';
-import { CreateWallet } from '../../Store/CreateWallet';
+import {
+  navigateAndSimpleReset,
+  navigateAndSimpleResetWithParam,
+} from '../../Navigators/NavigationUtils';
+import { CreateWallet } from '../../Store/CreateWallet/actions';
 import { color, Fonts, normalize, sizes } from '../../Theme/theme';
 
 const CreateWalletScreen = ({ CreateWallet }) => {
@@ -18,14 +21,11 @@ const CreateWalletScreen = ({ CreateWallet }) => {
 
   useEffect(() => {
     loading
-      ? CreateWallet({
+      ? CreateWallet(loading, {
           SuccessCallback: res => {
             setLoading(false);
-            navigateAndSimpleReset({
-              routes: [
-                { name: 'ViewSecretPhraseScreen', params: { newPwd: newPwd } },
-              ],
-              index: 0,
+            navigateAndSimpleResetWithParam('ViewSecretPhraseScreen', 0, {
+              newPwd: newPwd,
             });
           },
           FailureCallback: res => {
@@ -93,7 +93,7 @@ const CreateWalletScreen = ({ CreateWallet }) => {
       </KeyboardAwareScrollView>
       <Pressable
         onPress={() => {
-          // navigateAndSimpleReset('HomeScreen');
+          generateWalletMnemonic();
         }}
         style={{
           borderRadius: normalize(24),
@@ -120,8 +120,8 @@ const CreateWalletScreen = ({ CreateWallet }) => {
 
 const mapStateToProps = state => ({});
 
-const mapActionCreators = {
+const mapDispatchToProps = {
   CreateWallet,
 };
 
-export default connect(mapStateToProps, mapActionCreators)(CreateWalletScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateWalletScreen);

@@ -41,6 +41,7 @@ const InputText = ({
   marginBottom = normalize(30),
   onContentSizeChange,
   titleMarginBottom = normalize(5),
+  inputTextColor = color.WHITE,
 }) => {
   const [focus, setFocusState] = React.useState(false);
   return (
@@ -90,6 +91,7 @@ const InputText = ({
           paddingLeft: paddingLeft,
           paddingRight: paddingRight,
           fontFamily: fontFamily,
+          color: inputTextColor,
         }}
         placeholder={placeholder}
         placeholderTextColor={placeholderTextColor}
@@ -147,6 +149,7 @@ InputText.propTypes = {
     'emergency-call',
   ]),
   titleMarginBottom: PropTypes.number,
+  inputTextColor: PropTypes.string,
 };
 
 InputText.defaultProps = {
