@@ -1,16 +1,52 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Keyboard, Pressable, SafeAreaView, Text } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { connect } from 'react-redux';
 import { MainHeader } from '../../Components';
 import InputText from '../../Components/InputText';
+import { isNullOrUndefined } from '../../Helper/Utils';
 import { navigateAndSimpleReset } from '../../Navigators/NavigationUtils';
+import { CreateWallet } from '../../Store/CreateWallet';
 import { color, Fonts, normalize, sizes } from '../../Theme/theme';
 
-const CreateWallet = () => {
+const CreateWalletScreen = ({ CreateWallet }) => {
   const [newPwd, setNewPwd] = useState('');
   const [confirmPwd, setConfirmPwd] = useState('');
   const newPwdInput = useRef(null);
   const confirmPwdInput = useRef(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    loading
+      ? CreateWallet({
+          SuccessCallback: res => {
+            setLoading(false);
+            navigateAndSimpleReset({
+              routes: [
+                { name: 'ViewSecretPhraseScreen', params: { newPwd: newPwd } },
+              ],
+              index: 0,
+            });
+          },
+          FailureCallback: res => {
+            console.log('Something went wrong');
+            setLoading(false);
+          },
+        })
+      : setLoading(false);
+  }, [loading]);
+
+  //-- Action
+  const generateWalletMnemonic = () => {
+    if (isNullOrUndefined(newPwd)) {
+      console.log('Enter Valid Password');
+    } else if (newPwd !== confirmPwd) {
+      console.log("Confirm password & New Password isn't Match");
+    } else {
+      setLoading(true);
+    }
+  };
+  //-- end
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: color.MAIN_DARK }}>
@@ -49,6 +85,7 @@ const CreateWallet = () => {
           }}
           returnKeyType={'done'}
           title="Confirm Password"
+          secureTextEntry={true}
           placeholder={'Enter Confirm Password'}
           placeholderTextColor={color.blueGreyDark}
           autoCapitalize="none"
@@ -56,7 +93,7 @@ const CreateWallet = () => {
       </KeyboardAwareScrollView>
       <Pressable
         onPress={() => {
-          navigateAndSimpleReset('HomeScreen');
+          // navigateAndSimpleReset('HomeScreen');
         }}
         style={{
           borderRadius: normalize(24),
@@ -81,4 +118,10 @@ const CreateWallet = () => {
   );
 };
 
-export default CreateWallet;
+const mapStateToProps = state => ({});
+
+const mapActionCreators = {
+  CreateWallet,
+};
+
+export default connect(mapStateToProps, mapActionCreators)(CreateWalletScreen);

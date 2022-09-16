@@ -1,7 +1,7 @@
 import '@ethersproject/shims';
 import { ethers } from 'ethers';
 import { NativeModules } from 'react-native';
-import 'react-native-get-random-values';
+import 'react-native-randombytes';
 import '../../shim';
 import {
   GetEncryptedData,

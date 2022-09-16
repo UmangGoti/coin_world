@@ -12,6 +12,7 @@ import {
   HomeScreen,
   LoginScreen,
   SplashScreen,
+  ViewSecretPhraseScreen,
   WalletImportScreen,
 } from '../Screens';
 import { noInternetConnected } from '../Store/Global';
@@ -66,6 +67,11 @@ const Navigation = ({ noInternetConnected, props }) => {
         <Stack.Screen
           name="CreateWalletScreen"
           component={CreateWalletScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ViewSecretPhraseScreen"
+          component={ViewSecretPhraseScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen
