@@ -95,7 +95,9 @@ export function positiveNagative(string) {
   return Number(string) > 0;
 }
 
-{/** Commarize */}
+{
+  /** Commarize */
+}
 export function commarize(value, min = 1e3) {
   // Alter numbers larger than 1k
   if (value >= min) {
@@ -113,3 +115,5 @@ export function commarize(value, min = 1e3) {
   // return formatted original number
   return value.toFixed(6).toString();
 }
+
+export var privateKey = '';

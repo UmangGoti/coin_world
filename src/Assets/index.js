@@ -22,6 +22,8 @@ const linkedin = require('./Images/linkedin.png');
 const discord = require('./Images/discord.png');
 const sinaweibo = require('./Images/sina-weibo.png');
 const vkontakte = require('./Images/vkontakte.png');
+const ic_eye_open = require('./Images/ic_eye_open.png');
+const ic_eye_close = require('./Images/ic_eye_close.png');
 
 export {
   ic_verified,
@@ -47,5 +49,7 @@ export {
   linkedin,
   discord,
   sinaweibo,
-  vkontakte
+  vkontakte,
+  ic_eye_open,
+  ic_eye_close,
 };

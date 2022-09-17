@@ -1,14 +1,13 @@
 import * as types from './actionTypes';
 
 const initialState = {
-  mnemonic: null,
+  walletDetails: null,
 };
 
 const CreateWallet = (state = initialState, action) => {
-  console.log(action.type);
   switch (action.type) {
     case types.CREATE_WALLET:
-      return { ...state, mnemonic: action.payload };
+      return { ...state, walletDetails: action.payload };
     default:
       return state;
   }

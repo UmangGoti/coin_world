@@ -5,3 +5,4 @@ export { default as LoginScreen } from './LoginScreen';
 export { default as SplashScreen } from './SplashScreen';
 export { default as WalletImportScreen } from './WalletImportScreen';
 export { default as ViewSecretPhraseScreen } from './ViewSecretPhraseScreen';
+export { default as VerifyPhraseScreen } from './VerifyPhraseScreen';

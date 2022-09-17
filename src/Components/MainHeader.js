@@ -12,6 +12,12 @@ const MainHeader = ({
   onPressRight,
   sourceLeft,
   sourceRight,
+  leftBorderRadius = undefined,
+  leftBorderColor = undefined,
+  leftBorderWidth = undefined,
+  leftTintColor = undefined,
+  leftWidth = undefined,
+  leftHeight = undefined,
 }) => {
   return (
     <View
@@ -32,9 +38,12 @@ const MainHeader = ({
           <Image
             source={sourceLeft}
             style={{
-              width: normalize(20),
-              height: normalize(20),
-              tintColor: color.paleBlue,
+              width: leftWidth || normalize(20),
+              height: leftHeight || normalize(20),
+              tintColor: leftTintColor,
+              borderRadius: leftBorderRadius,
+              borderWidth: leftBorderWidth,
+              borderColor: leftBorderColor,
             }}
           />
         )}

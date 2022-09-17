@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Text, TextInput, View } from 'react-native';
+import { Image, Pressable, Text, TextInput, View } from 'react-native';
+import { ic_eye_close, ic_eye_open } from '../Assets';
 import { isNullOrUndefined } from '../Helper/Utils';
 import { color, Fonts, normalize, sizes } from '../Theme/theme';
 
@@ -15,8 +16,8 @@ const InputText = ({
   width = '100%',
   borderColor = color.paleBlue,
   alignSelf = 'center',
-  paddingLeft = normalize(10),
-  paddingRight = normalize(10),
+  paddingLeft = normalize(20),
+  paddingRight = normalize(20),
   fontFamily = Fonts.SFPRO_ROUNDED_Semibold,
   placeholder,
   placeholderTextColor = color.blueGreyDark,
@@ -42,10 +43,12 @@ const InputText = ({
   onContentSizeChange,
   titleMarginBottom = normalize(5),
   inputTextColor = color.WHITE,
+  imgRight,
+  onPressRightImage,
 }) => {
   const [focus, setFocusState] = React.useState(false);
   return (
-    <View style={{ marginBottom: marginBottom }}>
+    <>
       {!isNullOrUndefined(title) && (
         <Text
           style={{
@@ -57,49 +60,80 @@ const InputText = ({
           {title}
         </Text>
       )}
-      <TextInput
-        caretHidden={false}
-        editable={editable}
-        autoCapitalize={autoCapitalize}
-        autoCorrect={autoCorrect}
-        ref={inputRef}
-        inputAccessoryViewID={inputAccessoryViewID}
-        secureTextEntry={secureTextEntry}
-        focusable={focusable}
-        autoFocus={autoFocus}
-        onFocus={() => {
-          setFocusState(true);
-          onFocus;
-        }}
-        keyboardType={keyboardType}
-        value={value}
-        onBlur={() => {
-          setFocusState(false);
-          onBlur;
-        }}
-        returnKeyType={returnKeyType}
-        onSubmitEditing={onSubmitEditing}
-        onChangeText={onChangeText}
-        onEndEditing={onEndEditing}
+      <View
         style={{
+          marginBottom: marginBottom,
           borderWidth: borderWidth,
           borderRadius: borderRadius,
           height: height,
           width: width,
           borderColor: borderColor,
-          alignSelf: alignSelf,
+          flexDirection: 'row',
+          alignItems: 'center',
           paddingLeft: paddingLeft,
           paddingRight: paddingRight,
-          fontFamily: fontFamily,
-          color: inputTextColor,
+        }}>
+        <TextInput
+          caretHidden={false}
+          editable={editable}
+          autoCapitalize={autoCapitalize}
+          autoCorrect={autoCorrect}
+          ref={inputRef}
+          inputAccessoryViewID={inputAccessoryViewID}
+          secureTextEntry={secureTextEntry}
+          focusable={focusable}
+          autoFocus={autoFocus}
+          onFocus={() => {
+            setFocusState(true);
+            onFocus;
+          }}
+          keyboardType={keyboardType}
+          value={value}
+          onBlur={() => {
+            setFocusState(false);
+            onBlur;
+          }}
+          returnKeyType={returnKeyType}
+          onSubmitEditing={onSubmitEditing}
+          onChangeText={onChangeText}
+          onEndEditing={onEndEditing}
+          style={{
+            flex: 1,
+            height: height,
+            // width: width,
+            alignSelf: alignSelf,
+
+            fontFamily: fontFamily,
+            color: inputTextColor,
+          }}
+          placeholder={placeholder}
+          placeholderTextColor={placeholderTextColor}
+          multiline={multiline}
+          numberOfLines={numberOfLines}
+          onContentSizeChange={onContentSizeChange}
+        />
+        {imgRight && (
+          <PressableImage onPress={onPressRightImage} source={imgRight} />
+        )}
+      </View>
+    </>
+  );
+};
+
+const PressableImage = ({ onPress, source, tintColor = color.WHITE }) => {
+  return (
+    <Pressable
+      onPress={onPress}
+      style={{ width: normalize(18), height: normalize(18) }}>
+      <Image
+        source={source}
+        style={{
+          width: normalize(18),
+          height: normalize(18),
+          tintColor: tintColor,
         }}
-        placeholder={placeholder}
-        placeholderTextColor={placeholderTextColor}
-        multiline={multiline}
-        numberOfLines={numberOfLines}
-        onContentSizeChange={onContentSizeChange}
       />
-    </View>
+    </Pressable>
   );
 };
 

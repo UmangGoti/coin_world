@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import {
   FlatList,
   Image,
@@ -29,7 +35,7 @@ import { navigate } from '../../Navigators/NavigationUtils';
 import { getAssets } from '../../Store/GetAssets';
 import { color, Fonts, hexToRGB, normalize, sizes } from '../../Theme/theme';
 
-const HomeScreen = ({ getAssets }) => {
+const HomeScreen = ({ getAssets, address, uri }) => {
   const [assetsList, setAssets] = useState([]);
   const [data, setData] = useState({
     stats: {
@@ -67,9 +73,37 @@ const HomeScreen = ({ getAssets }) => {
     apiToGetAssets();
   }, []);
 
+  // hooks
+  const sheetRef = useRef < BottomSheet > null;
+
+  // variables
+  const snapPoints = useMemo(() => ['25%', '50%', '90%'], []);
+
+  // callbacks
+  const handleSheetChange = useCallback(index => {
+    console.log('handleSheetChange', index);
+  }, []);
+  const handleSnapPress = useCallback(index => {
+    sheetRef.current?.snapToIndex(index);
+  }, []);
+  const handleClosePress = useCallback(() => {
+    sheetRef.current?.close();
+  }, []);
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: color.MAIN_DARK }}>
-      <MainHeader title="Coin World" />
+      <MainHeader
+        title="Coin World"
+        sourceLeft={{ uri }}
+        leftWidth={normalize(30)}
+        leftHeight={normalize(30)}
+        leftBorderWidth={2}
+        leftBorderRadius={normalize(50)}
+        leftBorderColor={color.paleBlue}
+        onPressLeft={() => {
+          handleSnapPress(2);
+        }}
+      />
       {(data?.stats?.totalMarketCap !== 0 ||
         data?.stats?.total24hVolume !== 0 ||
         data?.stats?.totalCoins !== 0 ||
@@ -110,6 +144,14 @@ const HomeScreen = ({ getAssets }) => {
               title={'All crypto markets'}
             />
           </ScrollView>
+          <BottomSheet
+            ref={sheetRef}
+            snapPoints={snapPoints}
+            onChange={handleSheetChange}>
+            <BottomSheetView>
+              <Text>Awesome 🔥</Text>
+            </BottomSheetView>
+          </BottomSheet>
         </View>
       )}
       <View
@@ -131,7 +173,7 @@ const HomeScreen = ({ getAssets }) => {
             `${index}`;
           }}
           renderItem={({ item, index }) => {
-            return <AssetCard item={item} key={index} />;
+            return <AssetCard item={item} />;
           }}
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
@@ -148,7 +190,7 @@ const HomeScreen = ({ getAssets }) => {
   );
 };
 
-const AssetCard = ({ item, key }) => {
+const AssetCard = ({ item }) => {
   const [isImageUnknown, setImageIsUnknown] = useState(false);
   return (
     <Pressable
@@ -157,7 +199,6 @@ const AssetCard = ({ item, key }) => {
           coinuuid: item.uuid,
         });
       }}
-      key={key}
       style={{
         backgroundColor: color.WHITE,
         marginBottom: normalize(10),
@@ -364,6 +405,8 @@ const HeaderCard = ({
 
 const mapStateToProps = state => ({
   coinsData: state.getAssets.coinsData,
+  address: state.setSigner.address,
+  uri: state.setSigner.uri,
 });
 
 const mapDispatchToProps = {

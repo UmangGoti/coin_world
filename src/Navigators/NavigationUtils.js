@@ -24,7 +24,7 @@ export const navigateAndSimpleResetWithParam = (name, index = 0, params) => {
   navigationRef.current?.dispatch(
     CommonActions.reset({
       index,
-      routes: [{name: name, params: {orderCode: 'whatever'}}],
+      routes: [{name: name, params: params}],
     }),
   );
 };

@@ -8,7 +8,6 @@ const initialState = {
 };
 
 const global = (state = initialState, action) => {
-  console.log(action.type);
   switch (action.type) {
     case types.API_LOADING_START:
       return {...state, loading: true};

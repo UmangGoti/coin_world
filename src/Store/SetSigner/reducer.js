@@ -4,10 +4,10 @@ const initialState = {
   signer: {},
   address: '',
   ethersBalance: '',
+  imageUri: '',
 };
 
 const SetSigner = (state = initialState, action) => {
-  console.log(action.type);
   switch (action.type) {
     case types.SIGNER_VALUE:
       return {
@@ -15,6 +15,7 @@ const SetSigner = (state = initialState, action) => {
         signer: action.signer,
         address: action.address,
         ethersBalance: action.ethersBalance,
+        uri: action.uri,
       };
     default:
       return state;

@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Keyboard, Pressable, SafeAreaView, Text } from 'react-native';
+import { Keyboard, Pressable, SafeAreaView, Text, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { connect } from 'react-redux';
-import { MainHeader } from '../../Components';
+import { ic_eye_close, ic_eye_open } from '../../Assets';
+import { Button, MainHeader } from '../../Components';
 import InputText from '../../Components/InputText';
 import { isNullOrUndefined } from '../../Helper/Utils';
 import {
+  navigate,
   navigateAndSimpleReset,
   navigateAndSimpleResetWithParam,
 } from '../../Navigators/NavigationUtils';
@@ -15,6 +17,8 @@ import { color, Fonts, normalize, sizes } from '../../Theme/theme';
 const CreateWalletScreen = ({ CreateWallet }) => {
   const [newPwd, setNewPwd] = useState('');
   const [confirmPwd, setConfirmPwd] = useState('');
+  const [newPwdSecure, setNewPwdSecure] = useState(true);
+  const [confirmPwdSecure, setConfirmPwdSecure] = useState(true);
   const newPwdInput = useRef(null);
   const confirmPwdInput = useRef(null);
   const [loading, setLoading] = useState(false);
@@ -56,7 +60,7 @@ const CreateWalletScreen = ({ CreateWallet }) => {
           flex: 1,
           paddingHorizontal: sizes.CONTAINER_PADDING,
           paddingVertical: sizes.CONTAINER_PADDING,
-          height: '100%',
+          height: sizes.SCREEN_HEIGHT,
         }}>
         <InputText
           inputRef={newPwdInput}
@@ -67,12 +71,16 @@ const CreateWalletScreen = ({ CreateWallet }) => {
           onSubmitEditing={() => {
             confirmPwdInput.current.focus();
           }}
-          secureTextEntry={true}
+          secureTextEntry={newPwdSecure}
           returnKeyType={'next'}
           title="New Password"
           placeholder={'Enter New Password'}
           placeholderTextColor={color.blueGreyDark}
           autoCapitalize="none"
+          imgRight={newPwdSecure ? ic_eye_close : ic_eye_open}
+          onPressRightImage={() => {
+            setNewPwdSecure(!newPwdSecure);
+          }}
         />
         <InputText
           inputRef={confirmPwdInput}
@@ -85,35 +93,38 @@ const CreateWalletScreen = ({ CreateWallet }) => {
           }}
           returnKeyType={'done'}
           title="Confirm Password"
-          secureTextEntry={true}
+          secureTextEntry={confirmPwdSecure}
           placeholder={'Enter Confirm Password'}
           placeholderTextColor={color.blueGreyDark}
           autoCapitalize="none"
+          imgRight={confirmPwdSecure ? ic_eye_close : ic_eye_open}
+          onPressRightImage={() => {
+            setConfirmPwdSecure(!confirmPwdSecure);
+          }}
         />
-      </KeyboardAwareScrollView>
-      <Pressable
-        onPress={() => {
-          generateWalletMnemonic();
-        }}
-        style={{
-          borderRadius: normalize(24),
-          borderWidth: 2,
-          borderColor: color.paleBlue,
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: normalize(65),
-          bottom: normalize(30),
-          marginHorizontal: sizes.CONTAINER_PADDING,
-        }}>
-        <Text
+        <View
           style={{
-            fontFamily: Fonts.SFPRO_ROUNDED_Semibold,
-            fontSize: sizes.body,
-            color: color.WHITE,
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            bottom: 0,
+            overflow: 'visible',
           }}>
-          Create Wallet
-        </Text>
-      </Pressable>
+          <Button
+            onPress={() => {
+              generateWalletMnemonic();
+            }}
+            btnTitle={'Create Wallet'}
+          />
+          <View height={normalize(30)} />
+          <Button
+            btnTitle={'Import Wallet'}
+            onPress={() => {
+              navigate('WalletImportScreen');
+            }}
+          />
+        </View>
+      </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 };

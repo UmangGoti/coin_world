@@ -1,10 +1,11 @@
 import '@ethersproject/shims';
-import ethers from 'ethers';
+import { ethers } from 'ethers';
 import 'react-native-randombytes';
-import { isNullOrUndefined } from '../../Helper/Utils';
+import { toDataUrl } from '../../Components/Blockies';
 import { provider } from '../../Helper/Constants';
-import * as types from './actionTypes';
+import { isNullOrUndefined } from '../../Helper/Utils';
 import { apiLoadingStart, apiLoadingStop } from '../Global/actions';
+import * as types from './actionTypes';
 
 export const SetSigner = (
   isLoadding,
@@ -13,21 +14,25 @@ export const SetSigner = (
 ) => {
   return async dispatch => {
     isLoadding ? dispatch(apiLoadingStart()) : null;
-    console.log(key);
     const wallet = new ethers.Wallet(key, provider);
-    console.log(wallet);
     let signer = wallet.connect(provider);
     let address = signer.address;
     let balance = await signer.getBalance();
     let balanceInEth = ethers.utils.formatEther(balance);
-    console.log(balance, balanceInEth);
 
-    if (!isNullOrUndefined(address) && !isNullOrUndefined('')) {
+    if (signer) {
+      SuccessCallback(signer);
+    } else {
+      FailureCallback({});
+    }
+    if (!isNullOrUndefined(address) && !isNullOrUndefined(balance)) {
+      let uri = toDataUrl(address);
       dispatch({
         type: types.SIGNER_VALUE,
         signer: signer,
         address: address,
-        ethersBalance: 0,
+        ethersBalance: balanceInEth,
+        uri: uri,
       });
       dispatch(apiLoadingStop());
     } else {
@@ -36,6 +41,7 @@ export const SetSigner = (
         signer: {},
         address: '',
         ethersBalance: '',
+        imageUri: uri,
       });
     }
   };

@@ -1,4 +1,4 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 /**
  * Store Password Hash
@@ -8,9 +8,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 export const StorePasswordHash = async value => {
   try {
     await AsyncStorage.setItem(PasswordHash, value);
-  } catch (e) {
-    console.log(e);
-    return e;
+  } catch (error) {
+    console.log(error);
+    return error;
   }
 };
 
@@ -62,10 +62,6 @@ export const GetEncryptedData = async () => {
     console.log(error);
     return null;
   }
-};
-
-export const isLogin = async () => {
-  getPassHash() != null ? true : false;
 };
 
 export const EncryptedData = `EncryptedData`;

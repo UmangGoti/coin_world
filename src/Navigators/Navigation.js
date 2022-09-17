@@ -12,6 +12,7 @@ import {
   HomeScreen,
   LoginScreen,
   SplashScreen,
+  VerifyPhraseScreen,
   ViewSecretPhraseScreen,
   WalletImportScreen,
 } from '../Screens';
@@ -92,6 +93,11 @@ const Navigation = ({ noInternetConnected, props }) => {
         <Stack.Screen
           name="CoinInfoScreen"
           component={CoinInfoScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="VerifyPhraseScreen"
+          component={VerifyPhraseScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

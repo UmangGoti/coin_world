@@ -92,14 +92,3 @@ export const VerifyPassword = async password => {
   }
 };
 
-export const WalletCreate = async privateKey => {
-  const provider = new ethers.providers.JsonRpcProvider(
-    'https://polygon-mainnet.infura.io/v3/295cce92179b4be498665b1b16dfee34',
-  );
-  const wallet = new ethers.Wallet(privateKey, provider);
-  console.log('wallet', wallet);
-  const signer = wallet.connect(provider);
-  const address = await signer.getAddress();
-  console.log('signer', signer);
-  console.log(address);
-};
